@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    picture { display: contents; }
     :root {
       --off-white:  #F1F6F8;
       --charcoal:   #264653;
@@ -883,7 +884,7 @@
       </div>
     </div>
     <div class="cs-hero-image">
-      <img src="Assets/Project_02_assets/Hero.png" alt="Azure Build Health AI-Generated Release Summary interface" />
+      <picture><source type="image/webp" srcset="Assets/Project_02_assets/Hero.webp" /><img src="Assets/Project_02_assets/Hero.png" alt="Azure Build Health AI-Generated Release Summary interface" /></picture>
     </div>
   </section>
 
@@ -1091,7 +1092,7 @@
       <p class="cs-body-text">In our first MVP iteration, we designed a Summary tab featuring horizontal swim lanes to visualize every checkpoint in the release testing pipeline. We also embedded low-level tracking tables for incidents, bugs, and tasks to assist with active troubleshooting.</p>
 
       <div class="cs-image-inline">
-        <img src="Assets/Project_02_assets/Swimlanes_MVP.png" alt="First iteration — swim lanes MVP Summary tab" class="gallery-img" />
+        <picture><source type="image/webp" srcset="Assets/Project_02_assets/Swimlanes_MVP.webp" /><img src="Assets/Project_02_assets/Swimlanes_MVP.png" alt="First iteration — swim lanes MVP Summary tab" class="gallery-img" /></picture>
       </div>
 
       <p class="cs-body-text">While we initially partnered with a small set of developer teams whose specific workflows fit this model, the experience failed to scale as wider Azure engineering organizations onboarded.</p>
@@ -1110,7 +1111,7 @@
 
       <div class="annotated-wrap">
         <div class="annotated-img-container">
-          <img src="Assets/Project_02_assets/DesignFinal_screen.png" alt="Azure Build Health redesigned Summary tab — final design" />
+          <picture><source type="image/webp" srcset="Assets/Project_02_assets/DesignFinal_screen.webp" /><img src="Assets/Project_02_assets/DesignFinal_screen.png" alt="Azure Build Health redesigned Summary tab — final design" /></picture>
           <div class="callout callout-1" data-callout="1">1</div>
           <div class="callout callout-2" data-callout="2">2</div>
           <div class="callout callout-3" data-callout="3">3</div>
@@ -1246,7 +1247,7 @@
 
       function show(index) {
         current = (index + images.length) % images.length;
-        lbImg.src = images[current].src;
+        lbImg.src = (images[current].currentSrc || images[current].src);
         lbImg.alt = images[current].alt;
         counter.textContent = (current + 1) + ' / ' + images.length;
       }

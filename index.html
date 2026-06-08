@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    picture { display: contents; }
     :root {
       --off-white:  #F1F6F8;
       --charcoal:   #264653;
@@ -80,6 +81,8 @@
       position: absolute;
       inset: 0;
       background-image: url('Assets/HeaderImage_02.png');
+        background-image: -webkit-image-set(url('Assets/HeaderImage_02.webp') type('image/webp'), url('Assets/HeaderImage_02.png') type('image/png'));
+        background-image: image-set(url('Assets/HeaderImage_02.webp') type('image/webp'), url('Assets/HeaderImage_02.png') type('image/png'));
       opacity: 80%;
       background-size: cover;
       background-position: center right;
@@ -551,7 +554,7 @@
         <article class="project-card">
           <div class="project-visual">
             <div class="project-visual-inner">
-              <img src="Assets/Project_01_Hero.png" alt="Azure Build Health AI Risk Assessment screenshot" style="width:80%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" />
+              <picture><source type="image/webp" srcset="Assets/Project_01_Hero.webp" /><img src="Assets/Project_01_Hero.png" alt="Azure Build Health AI Risk Assessment screenshot" style="width:80%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" /></picture>
             </div>
           </div>
           <div class="project-info">
@@ -567,7 +570,7 @@
         <article class="project-card">
           <div class="project-visual">
             <div class="project-visual-inner">
-              <img src="Assets/Project_02_Hero.png" alt="Azure Build Health Release Summary screenshot" style="width:80%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" />
+              <picture><source type="image/webp" srcset="Assets/Project_02_Hero.webp" /><img src="Assets/Project_02_Hero.png" alt="Azure Build Health Release Summary screenshot" style="width:80%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" /></picture>
             </div>
           </div>
           <div class="project-info">
@@ -583,7 +586,7 @@
         <article class="project-card">
           <div class="project-visual">
             <div class="project-visual-inner">
-              <img src="Assets/Project_03_Hero.png" alt="Service Tree service migration screenshot" style="width:70%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" />
+              <picture><source type="image/webp" srcset="Assets/Project_03_Hero.webp" /><img src="Assets/Project_03_Hero.png" alt="Service Tree service migration screenshot" style="width:70%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.4); position:relative; z-index:2;" /></picture>
             </div>
           </div>
           <div class="project-info">

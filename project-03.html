@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    picture { display: contents; }
     :root {
       --off-white:  #F1F6F8;
       --charcoal:   #264653;
@@ -1030,10 +1031,10 @@
             <div class="cs-step-desc">The previous entry point to initiate a move was nested 3 clicks deep inside a secondary accordion tab. Many internal support questions boiled down to "How do I move my service?". I created two prominent entry points: one on the service's landing page and one within its metadata editor, aligning with how developers search for settings.</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px;">
               <div class="cs-image-inline" style="margin: 0;">
-                <img src="Assets/Project_03_assets/EntryPoint_1.png" alt="Discoverable entry point — service landing page" class="gallery-img" />
+                <picture><source type="image/webp" srcset="Assets/Project_03_assets/EntryPoint_1.webp" /><img src="Assets/Project_03_assets/EntryPoint_1.png" alt="Discoverable entry point — service landing page" class="gallery-img" /></picture>
               </div>
               <div class="cs-image-inline" style="margin: 0;">
-                <img src="Assets/Project_03_assets/EntryPoint_2.png" alt="Discoverable entry point — service metadata editor" class="gallery-img" />
+                <picture><source type="image/webp" srcset="Assets/Project_03_assets/EntryPoint_2.webp" /><img src="Assets/Project_03_assets/EntryPoint_2.png" alt="Discoverable entry point — service metadata editor" class="gallery-img" /></picture>
               </div>
             </div>
           </div>
@@ -1044,7 +1045,7 @@
             <div class="cs-step-title">Validating stale ownership</div>
             <div class="cs-step-desc">Identifying service owners was a major friction point. Inactive owners (caused by departures or re-orgs) resulted in migration failures. Previously, users had to manually check user directories. I added an inline verification step that highlights active/inactive owners automatically and suggests add/remove actions.</div>
             <div class="cs-image-inline" style="margin-top: 24px;">
-              <img src="Assets/Project_03_assets/ValidatingOwnership_screen.png" alt="Inline owner validation — active and inactive owners highlighted with suggested add/remove actions" class="gallery-img" />
+              <picture><source type="image/webp" srcset="Assets/Project_03_assets/ValidatingOwnership_screen.webp" /><img src="Assets/Project_03_assets/ValidatingOwnership_screen.png" alt="Inline owner validation — active and inactive owners highlighted with suggested add/remove actions" class="gallery-img" /></picture>
             </div>
           </div>
         </div>
@@ -1054,7 +1055,7 @@
             <div class="cs-step-title">Reducing failure rates through step-by-step wizard</div>
             <div class="cs-step-desc">Generic system errors used to leave developers stranded during migrations. I broke the flow into 3 simple, validated steps: (1) Select the new destination parent node, (2) Validate and update owners, and (3) Review and confirm the changes. This allowed us to validate inputs at each step and surface contextual warnings.</div>
             <div class="cs-image-inline" style="margin-top: 24px;">
-              <img src="Assets/Project_03_assets/ReducingFailure_screen.png" alt="Step-by-step migration wizard — validated three-step flow with contextual warnings" class="gallery-img" />
+              <picture><source type="image/webp" srcset="Assets/Project_03_assets/ReducingFailure_screen.webp" /><img src="Assets/Project_03_assets/ReducingFailure_screen.png" alt="Step-by-step migration wizard — validated three-step flow with contextual warnings" class="gallery-img" /></picture>
             </div>
           </div>
         </div>
@@ -1113,7 +1114,7 @@
 
       function show(index) {
         current = (index + images.length) % images.length;
-        lbImg.src = images[current].src;
+        lbImg.src = (images[current].currentSrc || images[current].src);
         lbImg.alt = images[current].alt;
         counter.textContent = (current + 1) + ' / ' + images.length;
       }

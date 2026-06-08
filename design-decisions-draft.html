@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Decisions — Draft (Project 02)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --off-white:  #F1F6F8;
+      --charcoal:   #264653;
+      --teal:       #2A9D8F;
+      --sun:        #E9C46A;
+      --sandy:      #F4A261;
+      --peach:      #E76F51;
+      --near-black: #130A07;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --max-w: 1000px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--off-white);
+      color: var(--near-black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── CONTENT WRAPPER ── */
+    .cs-body {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .cs-section-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--near-black);
+      margin-bottom: 28px;
+    }
+    .cs-section-title em { font-style: italic; color: var(--charcoal); }
+    .cs-body-text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+
+    /* ── ANNOTATED IMAGE ── */
+    .annotated-wrap {
+      position: relative;
+      margin: 48px -120px;
+      background: var(--charcoal);
+      border-radius: 8px;
+      padding: 48px 40px;
+    }
+    .annotated-img-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .annotated-img-container img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    /* Callout badges */
+    .callout {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--teal);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.28);
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      z-index: 10;
+    }
+    .callout:hover { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 3px 8px rgba(0,0,0,0.32); }
+    .callout-1 { top: 15.1%; left: 20.3%; }
+    .callout-2 { top: 13.7%; left: 83.9%; }
+    .callout-3 { top: 29.9%; left: 20.2%; }
+    .callout-4 { top: 69.9%; left: 48.4%; }
+    .callout-5 { top: 78.1%; left: 19.6%; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      background: var(--near-black);
+      border-radius: 6px;
+      padding: 18px 20px 18px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+      z-index: 500;
+      opacity: 0;
+      transform: scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .toast.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+    .toast-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .toast-content { flex: 1; }
+    .toast-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+    .toast-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--off-white);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .toast-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(241,246,248,0.6);
+      line-height: 1.65;
+    }
+    .toast-close {
+      background: none;
+      border: none;
+      color: rgba(241,246,248,0.35);
+      font-size: 1rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+    .toast-close:hover { color: var(--off-white); }
+
+    /* Connector lines from badge to image edge */
+    .callout-line {
+      position: absolute;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      transform-origin: left center;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    /* ── CALLOUT LEGEND ── */
+    .callout-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 32px;
+    }
+    .legend-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(241,246,248,0.1);
+    }
+    .legend-item:first-child { border-top: 1px solid rgba(241,246,248,0.1); }
+    .legend-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .legend-num-1,
+    .legend-num-2,
+    .legend-num-3,
+    .legend-num-4,
+    .legend-num-5 { background: var(--teal); color: #fff; }
+    .legend-body {}
+    .legend-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--off-white);
+      margin-bottom: 6px;
+    }
+    .legend-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(241,246,248,0.65);
+      line-height: 1.75;
+    }
+
+    /* ── DIVIDER ── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(38,70,83,0.12);
+      margin: 64px 0;
+    }
+
+    /* ── PROCESS STEPS (kept for reference) ── */
+    .cs-process { display: flex; flex-direction: column; gap: 0; margin: 32px 0; }
+    .cs-step {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(38,70,83,0.1);
+    }
+    .cs-step:first-child { border-top: 1px solid rgba(38,70,83,0.1); }
+    .cs-step-bar { border-radius: 2px; }
+    .cs-step:nth-child(1) .cs-step-bar { background: var(--teal); }
+    .cs-step:nth-child(2) .cs-step-bar { background: var(--sun); }
+    .cs-step:nth-child(3) .cs-step-bar { background: var(--sandy); }
+    .cs-step-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--near-black);
+      margin-bottom: 6px;
+    }
+    .cs-step-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #4a4a4a;
+      line-height: 1.78;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .annotated-wrap { margin: 40px -20px; padding: 28px 20px; }
+      .callout { width: 26px; height: 26px; font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cs-body">
+
+    <!-- DESIGN DECISIONS SECTION -->
+    <section>
+      <p class="cs-section-label">Design Decisions</p>
+      <h2 class="cs-section-title">Evolving the <em>summary experience</em></h2>
+      <p class="cs-body-text">We validated designs iteratively with around 10 users, replacing detailed noise with structured, AI-generated insights. The redesign focused on three key areas — each visible in the final surface below.</p>
+
+      <!-- ANNOTATED FULL-WIDTH SCREEN -->
+      <div class="annotated-wrap">
+
+        <div class="annotated-img-container">
+          <img src="Assets/Project_02_assets/DesignFinal_screen.png" alt="Azure Build Health redesigned Summary tab — final design" />
+
+          <div class="callout callout-1" data-callout="1">1</div>
+          <div class="callout callout-2" data-callout="2">2</div>
+          <div class="callout callout-3" data-callout="3">3</div>
+          <div class="callout callout-4" data-callout="4">4</div>
+          <div class="callout callout-5" data-callout="5">5</div>
+        </div>
+
+        <!-- LEGEND -->
+        <div class="callout-legend">
+          <div class="legend-item">
+            <div class="legend-num legend-num-1">1</div>
+            <div class="legend-body">
+              <div class="legend-title">Ready 2 Deploy review criteria</div>
+              <div class="legend-desc">A persistent banner surfaces the current gate status — letting Release Managers see at a glance whether outstanding failures need sign-off before the deployment can proceed.</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-num legend-num-2">2</div>
+            <div class="legend-body">
+              <div class="legend-title">Submit Safely Request</div>
+              <div class="legend-desc">The primary deployment action is now a single, clearly-labelled CTA. Rather than navigating to a separate tool, Release Managers can trigger the approval request directly from the Summary tab — reducing friction in the deployment process.</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-num legend-num-3">3</div>
+            <div class="legend-body">
+              <div class="legend-title">Assessing risk through Copilot</div>
+              <div class="legend-desc">Copilot generates an overall risk level and a plain-language justification — surfacing what's contributing to risk and why. The "AI-generated content may be incorrect" label was a deliberate design choice to build trust incrementally rather than oversell accuracy.</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-num legend-num-4">4</div>
+            <div class="legend-body">
+              <div class="legend-title">User overrides for AI output</div>
+              <div class="legend-desc">Release Managers can correct the AI-generated risk level and add their own justification. Corrections feed back into Copilot to improve future outputs — giving users agency while the model continues to learn.</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-num legend-num-5">5</div>
+            <div class="legend-body">
+              <div class="legend-title">AI-generated release summary</div>
+              <div class="legend-desc">Instead of spending over an hour manually compiling deployment notes, Copilot now drafts the full structured summary — customer-facing title, highlights, features, fixes, and configuration changes — ready for the approval team with one click.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /annotated-wrap -->
+
+    </section>
+
+  </div><!-- /cs-body -->
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <div class="toast-badge" id="toast-badge">1</div>
+    <div class="toast-content">
+      <div class="toast-label">Design Update</div>
+      <div class="toast-title" id="toast-title"></div>
+      <div class="toast-desc" id="toast-desc"></div>
+    </div>
+    <button class="toast-close" id="toast-close" aria-label="Dismiss">&#x2715;</button>
+  </div>
+
+  <script>
+    var CALLOUTS = {
+      '1': {
+        title: 'Ready 2 Deploy review criteria',
+        desc:  'A persistent banner surfaces the current gate status — letting Release Managers see at a glance whether outstanding failures need sign-off before the deployment can proceed.'
+      },
+      '2': {
+        title: 'Submit Safely Request',
+        desc:  'The primary deployment action is now a single, clearly-labelled CTA. Release Managers can trigger the approval request directly from the Summary tab — reducing friction in the deployment process.'
+      },
+      '3': {
+        title: 'Assessing risk through Copilot',
+        desc:  'Copilot generates an overall risk level and a plain-language justification. The "AI-generated content may be incorrect" label was intentional — building trust incrementally rather than overselling accuracy.'
+      },
+      '4': {
+        title: 'User overrides for AI output',
+        desc:  'Release Managers can correct the AI-generated risk level and add their own justification. Corrections feed back into Copilot to improve future outputs — giving users agency while the model learns.'
+      },
+      '5': {
+        title: 'AI-generated release summary',
+        desc:  'Copilot now drafts the full structured summary — customer-facing title, highlights, features, fixes, and config changes — cutting manual compilation from over an hour to under 15 minutes.'
+      }
+    };
+
+    var toast      = document.getElementById('toast');
+    var toastBadge = document.getElementById('toast-badge');
+    var toastTitle = document.getElementById('toast-title');
+    var toastDesc  = document.getElementById('toast-desc');
+    var dismissBtn = document.getElementById('toast-close');
+
+    var TOAST_W      = 300;
+    var TOAST_GAP    = 14;
+    var activeCallout = null;
+
+    function showToast(num, triggerEl) {
+      var data = CALLOUTS[num];
+      if (!data) return;
+
+      toastBadge.textContent = num;
+      toastTitle.textContent = data.title;
+      toastDesc.textContent  = data.desc;
+
+      // Temporarily show (invisible) to measure height
+      toast.style.opacity    = '0';
+      toast.style.visibility = 'hidden';
+      toast.classList.add('visible');
+
+      var rect        = triggerEl.getBoundingClientRect();
+      var toastH      = toast.offsetHeight;
+      var vw          = window.innerWidth;
+      var vh          = window.innerHeight;
+      var PAD         = 12; // minimum margin from viewport edge
+
+      // Prefer right of callout, fall back to left
+      var left = rect.right + TOAST_GAP;
+      if (left + TOAST_W > vw - PAD) {
+        left = rect.left - TOAST_W - TOAST_GAP;
+      }
+      // Clamp left
+      left = Math.max(PAD, Math.min(left, vw - TOAST_W - PAD));
+
+      // Vertically centre on the callout, then clamp
+      var top = rect.top + (rect.height / 2) - (toastH / 2);
+      top = Math.max(PAD, Math.min(top, vh - toastH - PAD));
+
+      toast.style.left       = left + 'px';
+      toast.style.top        = top  + 'px';
+      toast.style.opacity    = '';
+      toast.style.visibility = '';
+    }
+
+    function hideToast() {
+      toast.classList.remove('visible');
+      activeCallout = null;
+    }
+
+    // Toggle on callout click
+    document.querySelectorAll('.callout[data-callout]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var num = el.dataset.callout;
+        if (activeCallout === num && toast.classList.contains('visible')) {
+          hideToast();
+        } else {
+          showToast(num, el);
+          activeCallout = num;
+        }
+      });
+    });
+
+    // Close on × button
+    dismissBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      hideToast();
+    });
+
+    // Close on click anywhere else on the page
+    document.addEventListener('click', function () {
+      hideToast();
+    });
+  </script>
+
+</body>
+</html>

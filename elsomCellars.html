@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>Elsom Cellars: Design Once, Edit Forever — Lauren Larsen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    picture { display: contents; }
+    :root {
+      --off-white:  #F1F6F8;
+      --charcoal:   #264653;
+      --teal:       #2A9D8F;
+      --sun:        #E9C46A;
+      --sandy:      #F4A261;
+      --peach:      #E76F51;
+      --near-black: #130A07;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --max-w: 1000px;
+      --max-w-wide: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--off-white);
+      color: var(--near-black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(241,246,248,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(42,157,143,0.12);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--near-black);
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--teal); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .cs-hero {
+      padding-top: 90px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.12;
+      filter: blur(80px);
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 40px; left: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: var(--peach);
+      opacity: 0.08;
+      filter: blur(60px);
+    }
+    .cs-hero-inner {
+      max-width: var(--max-w-wide);
+      margin: 0 auto;
+      padding: 72px 48px 78px;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .cs-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(42,157,143,0.15);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .cs-tag-mvp {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sun);
+      background: rgba(233,196,106,0.12);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .cs-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--off-white);
+      max-width: 1000px;
+      margin-bottom: 24px;
+    }
+    .cs-hero-title em { font-style: italic; color: var(--sun); }
+    .cs-hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(241,246,248,0.65);
+      max-width: 1000px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+    .cs-hero-stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(241,246,248,0.1);
+      padding-top: 32px;
+      margin-bottom: 0;
+    }
+    .cs-stat {
+      padding: 0 40px 32px 0;
+      border-right: 1px solid rgba(241,246,248,0.08);
+      margin-right: 40px;
+    }
+    .cs-stat:last-child { border-right: none; }
+    .cs-stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(241,246,248,0.4);
+      margin-bottom: 6px;
+    }
+    .cs-stat-value {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--off-white);
+    }
+
+    /* ── CONTENT WRAPPER ── */
+    .cs-body {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    /* ── SECTION BLOCKS ── */
+    .cs-section {
+      margin-bottom: 80px;
+    }
+
+    .cs-section-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--near-black);
+      margin-bottom: 28px;
+    }
+
+    .cs-section-title em { font-style: italic; color: var(--charcoal); }
+
+    .cs-body-text {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+    .cs-body-text a {
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(42,157,143,0.4);
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .cs-body-text a:hover { color: var(--charcoal); text-decoration-color: var(--charcoal); }
+    .cs-body-text a strong { color: inherit; }
+
+    /* ── DIVIDER ── */
+    .cs-divider {
+      height: 1px;
+      background: rgba(38,70,83,0.12);
+      margin: 64px 0;
+    }
+
+    /* ── CALLOUT / QUOTE ── */
+    .cs-quote {
+      border-left: 3px solid var(--teal);
+      padding: 20px 28px;
+      margin: 36px 0;
+      background: rgba(42,157,143,0.04);
+    }
+    .cs-quote p {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: normal;
+      line-height: 1.7;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+    .cs-quote cite {
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: rgba(19,10,7,0.45);
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* ── FINDINGS GRID ── */
+    .cs-findings {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      margin: 32px 0;
+    }
+    .cs-findings-two { grid-template-columns: 1fr 1fr; }
+    .cs-finding {
+      background: #fff;
+      padding: 28px 24px;
+      border-top: 3px solid transparent;
+    }
+    .cs-finding:nth-child(1) { border-color: var(--teal); }
+    .cs-finding:nth-child(2) { border-color: var(--sun); }
+    .cs-finding:nth-child(3) { border-color: var(--peach); }
+    .cs-finding-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: rgba(19,10,7,0.58);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .cs-finding-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--near-black);
+      margin-bottom: 8px;
+    }
+    .cs-finding-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .cs-process {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 32px 0;
+    }
+    .cs-step {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(38,70,83,0.1);
+    }
+    .cs-step:first-child { border-top: 1px solid rgba(38,70,83,0.1); }
+    .cs-step-bar { border-radius: 2px; }
+    .cs-step:nth-child(1) .cs-step-bar { background: var(--teal); }
+    .cs-step:nth-child(2) .cs-step-bar { background: var(--sun); }
+    .cs-step:nth-child(3) .cs-step-bar { background: var(--sandy); }
+    .cs-step:nth-child(4) .cs-step-bar { background: var(--peach); }
+    .cs-step:nth-child(5) .cs-step-bar { background: var(--teal); }
+    .cs-step-content {}
+    .cs-step-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--near-black);
+      margin-bottom: 6px;
+    }
+    .cs-step-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #4a4a4a;
+      line-height: 1.78;
+    }
+
+    /* ── IMAGE BLOCKS ── */
+    .cs-image-full {
+      margin: 40px -48px;
+      background: var(--charcoal);
+      padding: 48px;
+      border-radius: 4px;
+    }
+    .cs-image-caption {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(241,246,248,0.5);
+      margin-top: 14px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .cs-image-inline {
+      margin: 36px 0;
+    }
+    .cs-image-inline img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(19,10,7,0.1);
+      border: 1px solid rgba(38,70,83,0.1);
+    }
+    .cs-image-inline-caption {
+      font-size: 0.78rem;
+      color: rgba(19,10,7,0.4);
+      margin-top: 10px;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    /* placeholder image */
+    .cs-placeholder {
+      width: 100%;
+      background: linear-gradient(145deg, #e8eef1, #d8e4e9);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(38,70,83,0.2);
+    }
+    .cs-placeholder-inner {
+      text-align: center;
+      padding: 40px;
+    }
+    .cs-placeholder-inner svg {
+      width: 32px; height: 32px;
+      color: rgba(38,70,83,0.3);
+      margin-bottom: 10px;
+    }
+    .cs-placeholder-inner p {
+      font-size: 0.78rem;
+      color: rgba(38,70,83,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .cs-highlight {
+      background: var(--charcoal);
+      color: var(--off-white);
+      padding: 40px 44px;
+      border-radius: 4px;
+      margin: 36px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-highlight::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.1;
+      filter: blur(40px);
+    }
+    .cs-highlight-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .cs-highlight p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(241,246,248,0.8);
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-highlight strong {
+      color: var(--off-white);
+      font-weight: 500;
+    }
+    .cs-highlight p + p { margin-top: 16px; }
+    .cs-highlight a {
+      color: var(--sun);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(233,196,106,0.45);
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .cs-highlight a:hover {
+      color: #fff;
+      text-decoration-color: #fff;
+    }
+
+    /* ── OUTCOMES ── */
+    .cs-outcomes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 32px 0;
+    }
+    .cs-outcome {
+      background: #fff;
+      padding: 28px 28px;
+    }
+    .cs-outcome-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cs-outcome:nth-child(1) .cs-outcome-num { color: var(--teal); font-size: 2.4rem; }
+    .cs-outcome:nth-child(2) .cs-outcome-num { color: var(--peach); }
+    .cs-outcome-label {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+
+    /* ── MATURITY LIST ── */
+    .cs-maturity {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 24px 0;
+    }
+    .cs-maturity-item {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(38,70,83,0.1);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .cs-maturity-item:first-child { border-top: 1px solid rgba(38,70,83,0.1); }
+    .cs-maturity-term {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding-top: 2px;
+    }
+    .cs-maturity-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.75;
+    }
+
+    /* ── NEXT PROJECT ── */
+    .cs-next {
+      background: var(--near-black);
+      padding: 64px 48px;
+      text-align: center;
+    }
+    .cs-next-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(241,246,248,0.35);
+      margin-bottom: 16px;
+    }
+    .cs-next-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 300;
+      color: var(--off-white);
+      margin-bottom: 28px;
+    }
+    .cs-next-title em { font-style: italic; color: var(--sun); }
+    .btn-outline-light {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 32px;
+      border: 1.5px solid rgba(241,246,248,0.35);
+      color: var(--off-white);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline-light:hover { border-color: var(--sun); background: rgba(233,196,106,0.08); }
+
+    /* ── COLOR BAR ── */
+    .color-bar {
+      height: 4px;
+      background: linear-gradient(to right, var(--teal), var(--sun), var(--sandy), var(--peach));
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cs-meta     { animation: fadeUp 0.5s ease both 0.1s; opacity: 0; }
+    .cs-hero-title { animation: fadeUp 0.6s ease both 0.2s; opacity: 0; }
+    .cs-hero-sub   { animation: fadeUp 0.6s ease both 0.32s; opacity: 0; }
+    .cs-hero-stats { animation: fadeUp 0.6s ease both 0.44s; opacity: 0; }
+
+    /* ── PROTO TOGGLE ── */
+    .proto-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 24px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 11px 26px;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s;
+      font-family: var(--font-body);
+    }
+    .proto-toggle:hover { background: var(--teal); color: #fff; }
+
+    /* ── LIGHTBOX ── */
+    .gallery-img {
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gallery-img:hover {
+      transform: scale(1.015);
+      box-shadow: 0 16px 48px rgba(19,10,7,0.18);
+    }
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(19,10,7,0.92);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      user-select: none;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 22px; right: 28px;
+      background: none;
+      border: none;
+      color: rgba(241,246,248,0.6);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--off-white); }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(241,246,248,0.1);
+      border: 1px solid rgba(241,246,248,0.18);
+      color: var(--off-white);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+      transition: background 0.2s;
+    }
+    .lightbox-nav:hover { background: rgba(241,246,248,0.22); }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+    .lightbox-counter {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(241,246,248,0.38);
+    }
+
+
+    /* ── COMPARISON TABLE ── */
+    .cs-table-wrap {
+      margin: 32px 0 12px;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid rgba(38,70,83,0.1);
+    }
+    .cs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      min-width: 560px;
+    }
+    .cs-table th {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(38,70,83,0.15);
+      background: rgba(38,70,83,0.03);
+    }
+    .cs-table td {
+      padding: 14px 20px;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.55;
+      border-bottom: 1px solid rgba(38,70,83,0.08);
+      vertical-align: top;
+    }
+    .cs-table tr:last-child td { border-bottom: none; }
+    .cs-table td:first-child { font-weight: 500; color: var(--near-black); white-space: nowrap; }
+    .cs-table td:last-child { color: var(--peach); font-weight: 400; }
+    .cs-table-note {
+      font-size: 0.78rem;
+      color: rgba(19,10,7,0.45);
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+
+    /* ── OWNERSHIP SPLIT DIAGRAM ── */
+    .cs-split {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      align-items: center;
+      gap: 0;
+      margin: 36px 0;
+      background: #fff;
+      border-radius: 4px;
+      padding: 32px;
+      border: 1px solid rgba(38,70,83,0.1);
+    }
+    .cs-split-sources { display: flex; flex-direction: column; gap: 16px; }
+    .cs-split-box {
+      padding: 18px 20px;
+      border-radius: 4px;
+      border-left: 3px solid var(--teal);
+      background: rgba(42,157,143,0.05);
+    }
+    .cs-split-box.content { border-left-color: var(--sun); background: rgba(233,196,106,0.09); }
+    .cs-split-box.out     { border-left-color: var(--peach); background: rgba(231,111,81,0.06); }
+    .cs-split-kicker {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .cs-split-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--near-black);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .cs-split-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.6;
+    }
+    .cs-split-arrow {
+      text-align: center;
+      color: rgba(38,70,83,0.4);
+      font-size: 1.4rem;
+    }
+    .cs-split-flow { display: flex; flex-direction: column; gap: 10px; }
+    .cs-split-step {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      padding: 12px 16px;
+      border: 1px solid rgba(38,70,83,0.14);
+      border-radius: 4px;
+      background: var(--off-white);
+    }
+    .cs-split-step small {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #666;
+      margin-top: 2px;
+    }
+    .cs-split-down { text-align: center; color: rgba(38,70,83,0.35); font-size: 0.9rem; line-height: 1; }
+
+    /* ── TWO-UP IMAGES ── */
+    .cs-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .cs-pair .cs-image-inline { margin: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav { padding: 16px 20px; }
+      .cs-hero-inner { padding: 48px 20px 56px; }
+      .cs-body { padding: 48px 20px; }
+      .cs-findings, .cs-findings.cs-findings-two { grid-template-columns: 1fr; }
+      .cs-outcomes { grid-template-columns: 1fr; }
+      .cs-maturity-item { grid-template-columns: 1fr; gap: 6px; }
+      .cs-image-full { margin: 32px -20px; padding: 28px 20px; }
+      .cs-hero-stats { flex-wrap: wrap; gap: 24px; }
+      .cs-stat { border-right: none; padding-right: 0; margin-right: 0; }
+      .cs-split { grid-template-columns: 1fr; padding: 22px 18px; gap: 14px; }
+      .cs-split-arrow { transform: rotate(90deg); }
+      .cs-pair { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Lauren Larsen</a>
+    <ul class="nav-links">
+      <li>
+        <a href="index.html#projects" class="nav-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          All Projects
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-meta">
+        <span class="cs-tag">Independent Design</span>
+        <span class="cs-tag">Print</span>
+        <span class="cs-tag-mvp">Menu Design</span>
+      </div>
+      <h1 class="cs-hero-title">Elsom Cellars: <em>Design Once, Edit Forever</em></h1>
+      <p class="cs-hero-sub">Elsom Cellars reached out to improve their food and wine menus. I redesigned both around their existing logos and built an editable menu that reduces their costs over the long term.</p>
+      <div class="cs-hero-stats">
+        <div class="cs-stat">
+          <div class="cs-stat-label">Role</div>
+          <div class="cs-stat-value">Designer of Record &amp; Builder</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-label">Client</div>
+          <div class="cs-stat-value">Elsom Cellars, Winery</div>
+        </div>
+        <div class="cs-stat">
+          <div class="cs-stat-label">Type</div>
+          <div class="cs-stat-value">Print Design &amp; Content Workflow</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="color-bar"></div>
+
+  <!-- BODY -->
+  <div class="cs-body">
+
+    <!-- OVERVIEW -->
+    <section class="cs-section">
+      <p class="cs-section-label">Overview</p>
+      <h2 class="cs-section-title">A fresh design, and a menu that <em>keeps changing</em></h2>
+      <p class="cs-body-text">Elsom Cellars is a winery that had been making its menus in-house with tools like Canva. They asked me to redesign their food and wine menus using the logos they already had. I designed them in Figma: an 11×17 tabloid food menu printed front and back, and a one-sided wine list. Both use the Elsom wordmark, a watermark, and a five-weight type system pairing Barlow Condensed with Cormorant Garamond.</p>
+      <p class="cs-body-text">The design was the easy part. The hard part was what happened every time a price or menu item changed. The winery wanted to update its own menus without calling me, and without breaking the design. I researched the tools they already knew, found that their "locks" don't actually lock, and shipped a spreadsheet-to-print pipeline that keeps design and content in separate hands.</p>
+    </section>
+
+    <!-- THE CHALLENGE -->
+    <section class="cs-section">
+      <div class="cs-highlight">
+        <div class="cs-highlight-label">The Challenge</div>
+        <p>Every menu change went through me. I edited the file in Figma, exported a print-ready PDF, and sent it back to the winery to print. They asked to make changes <strong>without Figma and without me</strong>, but they still wanted to <strong>keep the design and branding</strong>.</p>
+        <p>So far the requests were small, like renaming an item or bumping a price. But I expected the whole menu to change next season, and anyone editing it would be someone with no design training and no designer checking their work.</p>
+      </div>
+    </section>
+
+    <!-- FIRST BUILD -->
+    <section class="cs-section">
+      <p class="cs-section-label">First Pass</p>
+      <h2 class="cs-section-title">The obvious build, and <em>why I stepped back</em></h2>
+      <p class="cs-body-text">My first brief was simple: a site where someone signs in, edits the text on the menu but never the formatting or typography, and exports a PDF. I kept the feature set deliberately small. I rebuilt the Figma artboards as a code template that matched them column for column, with the real typefaces embedded in the exported PDF.</p>
+      <p class="cs-body-text">One correction came early, and it was on me for not being clearer. The first version treated the page as a PDF editor. What I actually wanted was a plain form for editing text, with the PDF generated only at export time. Once that was fixed, I restyled the interface with Material Design patterns in Elsom's palette.</p>
+      <p class="cs-body-text">It worked. But it also came with a sign-in, a save endpoint, and a server-side content store. That's three things someone would have to host and keep running indefinitely, for a menu that changes a few times a year. Before committing to that, I wanted to know whether I should be building anything at all.</p>
+    </section>
+
+    <!-- DISCOVERY -->
+    <section class="cs-section">
+      <p class="cs-section-label">Reframing</p>
+      <h2 class="cs-section-title">The questions that <em>changed the scope</em></h2>
+      <p class="cs-body-text">I paused the build and treated it as a product question rather than an engineering one. Leveraging the <a href="https://every.to/guides/compound-engineering" target="_blank" rel="noopener">Compound Engineering</a> skills with Claude, I worked through the problem before writing any more code. Four questions reshaped the requirements:</p>
+      <div class="cs-maturity">
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">What happens today?</div>
+          <div class="cs-maturity-desc">Not what the tool does, but what people do. The answer was that the winery's current "undo button" is calling me. The tool wasn't fixing a broken workflow. It was replacing a person, so the real risk was the first time they changed something and had nobody to ask.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">How much changes?</div>
+          <div class="cs-maturity-desc">Small edits now, a possible full rewrite next season. Small edits call for confidence and a way back. Rewrites call for a starting point. A good solution has to handle both.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">What's my role?</div>
+          <div class="cs-maturity-desc">I decided to stay the designer of record. The winery would come to me for design changes only, never for content changes.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Which file is the master?</div>
+          <div class="cs-maturity-desc">I hadn't considered this, and it turned out to be the most important question. If they edit prices all summer and I redesign in Figma in September, someone has to reconcile two copies of the menu by hand. The answer became the project's core principle: <strong>Figma owns the design, and a separate source owns the content.</strong> Neither one ever holds the other's values.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="cs-section">
+      <p class="cs-section-label">Research · Buy Before Build</p>
+      <h2 class="cs-section-title">Auditing the tools <em>they already knew</em></h2>
+      <p class="cs-body-text">I evaluated design tools and menu-specific products against one core requirement: <em>staff can edit text but cannot break the layout.</em></p>
+
+      <div class="cs-findings cs-findings-two">
+        <div class="cs-finding">
+          <div class="cs-finding-num">01</div>
+          <div class="cs-finding-title">Full edit access</div>
+          <div class="cs-finding-desc">Canva lets anyone with edit access change any design element. Locking content couldn't enforce the layout or prevent mistakes.</div>
+        </div>
+        <div class="cs-finding">
+          <div class="cs-finding-num">02</div>
+          <div class="cs-finding-title">Fixed canvases break on text</div>
+          <div class="cs-finding-desc">In Marq, fixed canvases meant longer text could overlap or get cut off, so I'd have to step in and fix the menu whenever a mistake happened.</div>
+        </div>
+      </div>
+
+      <div class="cs-table-wrap">
+        <table class="cs-table">
+          <thead>
+            <tr><th>Product</th><th>Layout lock</th><th>Print controls</th><th>Annual cost</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Marq Team</td><td>Enforced, admin-only unlock</td><td>CMYK, adjustable bleed</td><td>$120 / 2 seats</td></tr>
+            <tr><td>Adobe Express Teams</td><td>Claimed, with open bypass reports</td><td>CMYK, bleed, crop marks</td><td>~$120 first year</td></tr>
+            <tr><td>Flipsnack Business</td><td>Role-enforced</td><td>CMYK, bleed</td><td>$1,020</td></tr>
+            <tr><td>Canva Business</td><td>Advisory, any editor can unlock</td><td>Fixed 0.125" bleed</td><td>$250 / person</td></tr>
+            <tr><td>MustHaveMenus Pro</td><td>Undocumented</td><td>Their print service</td><td>$492 / location</td></tr>
+            <tr><td>iMenuPro</td><td>None</td><td>CMYK, bleed</td><td>$135 +</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cs-table-note">Vendor pricing and documentation, August 2026.</p>
+
+      <p class="cs-body-text">Then I learned the winery already paid for Canva. That removed the cost argument, but cost had never been the deciding factor. No Canva plan, at any tier, stops an editor from changing the layout. So Canva became the <strong>documented fallback</strong>: a no-cost way out if the new approach didn't work for them.</p>
+      <p class="cs-body-text">I also set a baseline. At a few small edits a year, me making the changes in Figma costs maybe an hour or two annually. Any solution had to beat that, both in money and in maintenance.</p>
+    </section>
+
+    <!-- THE DECISION -->
+    <section class="cs-section">
+      <p class="cs-section-label">The Decision</p>
+      <h2 class="cs-section-title">Content in a spreadsheet, <em>design in Figma</em></h2>
+      <p class="cs-body-text">I recommended moving the menu content into a Google Sheet, a tool the winery already knew how to use. My template, layout logic, fonts, and PDF export stay exactly as built, and they read from that sheet. Everything with an ongoing cost gets deleted: the sign-in, the save endpoint, the content store, and the server itself. The result is a static page on free hosting.</p>
+
+      <div class="cs-split" role="img" aria-label="Figma is the master for design and feeds the template. The spreadsheet is the master for content. Both feed the menu page, which shows a preview and exports the PDF.">
+        <div class="cs-split-sources">
+          <div class="cs-split-box">
+            <div class="cs-split-kicker">Master for design · Me</div>
+            <div class="cs-split-title">Figma → code template</div>
+            <div class="cs-split-desc">Typeface, size, color, spacing, column geometry, logo, watermark.</div>
+          </div>
+          <div class="cs-split-box content">
+            <div class="cs-split-kicker">Master for content · Winery</div>
+            <div class="cs-split-title">Google Sheet</div>
+            <div class="cs-split-desc">Sections, item names, prices, descriptions, dietary tags, add-ons.</div>
+          </div>
+        </div>
+        <div class="cs-split-arrow" aria-hidden="true">→</div>
+        <div class="cs-split-flow">
+          <div class="cs-split-step">Menu page<small>Reads both. Computes which column each section prints in.</small></div>
+          <div class="cs-split-down" aria-hidden="true">↓</div>
+          <div class="cs-split-step">Preview of every printed side<small>The only path to export.</small></div>
+          <div class="cs-split-down" aria-hidden="true">↓</div>
+          <div class="cs-split-step">Print-ready PDF<small>11×17, typefaces embedded, generated in the browser.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="cs-section">
+      <p class="cs-section-label">Goals</p>
+      <h2 class="cs-section-title">Answering the <em>four questions</em></h2>
+      <p class="cs-body-text">Each question from the reframing became a goal. The spreadsheet approach met all four.</p>
+      <div class="cs-maturity">
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">What happens today?</div>
+          <div class="cs-maturity-desc"><strong>Goal: replace the call to me with a safety net.</strong><br>The page previews every printed side before export, and a fit check stops a menu that runs too long. The check I used to provide is now built in.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">How much changes?</div>
+          <div class="cs-maturity-desc"><strong>Goal: handle small edits and full rewrites.</strong><br>A price fix is one cell. A new season is new rows. Column placement is calculated from the content, so even a full rewrite lands in the design.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">What's my role?</div>
+          <div class="cs-maturity-desc"><strong>Goal: stay designer of record, out of content.</strong><br>No cell in the sheet controls typeface, color, size, or column. The winery owns the content, and only design changes come back to me.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Which file is the master?</div>
+          <div class="cs-maturity-desc"><strong>Goal: never reconcile two copies.</strong><br>Figma owns the design and the sheet owns the content. When I redesign next season, whatever is in the sheet flows straight into the new template. Nothing needs reconciling, because nothing was ever duplicated.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN DECISIONS -->
+    <section class="cs-section">
+      <p class="cs-section-label">The Designs</p>
+      <h2 class="cs-section-title">Guardrails for editing <em>without a designer</em></h2>
+      <p class="cs-body-text">With no designer reviewing the output, the tool itself has to catch mistakes.</p>
+
+      <div class="cs-process">
+        <div class="cs-step">
+          <div class="cs-step-bar"></div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Content lives where they already work</div>
+            <div class="cs-step-desc">Each row is a <em>Section</em> or an <em>Item</em>, picked from a dropdown, and the order in the sheet is the order on the menu. <strong>No cell controls font, color, size, or column</strong>, so the design can't be changed from the sheet.</div>
+            <div class="cs-image-inline" style="margin-top: 24px;">
+              <picture><source type="image/webp" srcset="Assets/Project_04_assets/Spreadsheet.webp" /><img src="Assets/Project_04_assets/Spreadsheet.png" alt="The Elsom Cellars master menu spreadsheet: Type, Name, Price, Description, Allergy Tag, Add on and Pairing columns, with Food Menu, Wine Menu and Settings tabs" class="gallery-img" /></picture>
+            </div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-bar"></div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">A preview they can trust</div>
+            <div class="cs-step-desc">My one must-have was a preview before export. The preview and the PDF read from the same design values, so what the winery sees is exactly what prints.</div>
+            <div class="cs-pair">
+              <div class="cs-image-inline">
+                <picture><source type="image/webp" srcset="Assets/Project_04_assets/Preview_Food.webp" /><img src="Assets/Project_04_assets/Preview_Food.png" alt="Food menu page showing the front side preview, an Open the spreadsheet button, and Export PDF" class="gallery-img" /></picture>
+              </div>
+              <div class="cs-image-inline">
+                <picture><source type="image/webp" srcset="Assets/Project_04_assets/Preview_Food_Back.webp" /><img src="Assets/Project_04_assets/Preview_Food_Back.png" alt="Back side of the food menu preview with drinks, coffee and desserts and the Elsom E watermark" class="gallery-img" /></picture>
+              </div>
+            </div>
+            <p class="cs-image-inline-caption">Food menu, front and back, rendered from the spreadsheet.</p>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-bar"></div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">A gate instead of a guess</div>
+            <div class="cs-step-desc">When content runs past the page, the preview names the column that's too long and disables export. A deliberate override is there if they need it, so they're never stuck.</div>
+            <div class="cs-image-inline" style="margin-top: 24px;">
+              <picture><source type="image/webp" srcset="Assets/Project_04_assets/FitGate_Wine.webp" /><img src="Assets/Project_04_assets/FitGate_Wine.png" alt="Wine menu page with a warning that the right column runs past the bottom of the page, export disabled, and an Export anyway checkbox" class="gallery-img" /></picture>
+            </div>
+            <p class="cs-image-inline-caption">Live, October 2026: the fall wine list ran long, and the gate caught it before it reached the printer.</p>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-bar"></div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Layout rules learned from real content</div>
+            <div class="cs-step-desc">Column placement is calculated from the content, so nobody has to choose it. I tuned the rules against the real artboards, with a separate set for the one-sided wine list.</div>
+          </div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step-bar"></div>
+          <div class="cs-step-content">
+            <div class="cs-step-title">Failures that explain themselves</div>
+            <div class="cs-step-desc">Every problem gets a plain-language message instead of a blank page. If the sheet can't be reached, a row can't be read, or a column is missing, the page says what's wrong and holds the export.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- OUTCOMES -->
+    <section class="cs-section">
+      <p class="cs-section-label">Outcome</p>
+      <h2 class="cs-section-title">Smaller to maintain, <em>safer to use</em></h2>
+      <p class="cs-body-text">Both menus are live as a static site on Vercel. The winery edits one spreadsheet with a tab per menu, opens the page, reads the preview, and exports the print-ready file. I stay the designer of record in Figma, and content changes no longer come through me.</p>
+
+      <div class="cs-outcomes">
+        <div class="cs-outcome">
+          <div class="cs-outcome-num">Server → Static</div>
+          <div class="cs-outcome-label">Removed the sign-in, save endpoint, content store and running server. What's left is a static page on free hosting, with nothing to keep alive.</div>
+        </div>
+        <div class="cs-outcome">
+          <div class="cs-outcome-num">2 menus · 1 sheet</div>
+          <div class="cs-outcome-label">Food (front and back) and wine (one side) both read from one spreadsheet. Adding the wine menu left the food menu's printed output unchanged.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNINGS -->
+    <section class="cs-section">
+      <p class="cs-section-label">Reflection</p>
+      <h2 class="cs-section-title">What I'd <em>carry forward</em></h2>
+      <div class="cs-maturity">
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Assign owners by type</div>
+          <div class="cs-maturity-desc">Asking "which file is the master?" was the wrong question. Design and content each needed their own owner, and that one decision settled build vs. buy, the hosting choice, and the September redesign problem.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Verify vendor claims</div>
+          <div class="cs-maturity-desc">The obvious answer, "use a locked Canva template," fell apart on one line of Canva's own documentation. A lock is a feature, not a permission, and the difference only shows up when nobody is watching.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Design for unsupervised use</div>
+          <div class="cs-maturity-desc">Once I'm out of the loop, the preview is the only quality check. That made preview accuracy a correctness requirement, not polish, and it turned the overflow warning into a gate.</div>
+        </div>
+        <div class="cs-maturity-item">
+          <div class="cs-maturity-term">Set the bar honestly</div>
+          <div class="cs-maturity-desc">The alternative to building was an hour or two a year of my time. Measuring every option against that baseline kept me from building more than the problem needed.</div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /cs-body -->
+
+  <!-- NEXT PROJECT -->
+  <div class="cs-next">
+    <p class="cs-next-label">Next Case Study</p>
+    <h2 class="cs-next-title">Service Tree — <em>Moving a Service</em></h2>
+    <a href="project-03.html" class="btn-outline-light">View Project 04</a>
+  </div>
+
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox-overlay" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&#x2715;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <div id="lightbox-counter" class="lightbox-counter"></div>
+  </div>
+
+  <script>
+    (function () {
+      var images  = Array.from(document.querySelectorAll('.gallery-img'));
+      var overlay = document.getElementById('lightbox');
+      var lbImg   = document.getElementById('lightbox-img');
+      var counter = document.getElementById('lightbox-counter');
+      var current = 0;
+
+      function show(index) {
+        current = (index + images.length) % images.length;
+        lbImg.src = (images[current].currentSrc || images[current].src);
+        lbImg.alt = images[current].alt;
+        counter.textContent = (current + 1) + ' / ' + images.length;
+      }
+
+      function open(index) {
+        show(index);
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      images.forEach(function (img, i) {
+        img.addEventListener('click', function () { open(i); });
+      });
+
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      document.getElementById('lightbox-prev').addEventListener('click', function () { show(current - 1); });
+      document.getElementById('lightbox-next').addEventListener('click', function () { show(current + 1); });
+
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+    })();
+  </script>
+
+</body>
+</html>
